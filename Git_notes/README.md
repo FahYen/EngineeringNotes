@@ -4,6 +4,7 @@
 
  - [Initial setup of Git on a new system](#initial-setup-of-git-on-a-new-system)
  - [Getting started](#getting-started)
+ - [Using multiple accounts on same computer](#using-multiple-accounts-on-same-computer)
  - [Basic Git work flow](#basic-git-work-flow)
 
 ## Initial setup of Git on a new system
@@ -42,6 +43,55 @@ git checkout feature_branch
 
 
 
+## Using multiple accounts on same computer
+### Assuming you already set up SSH key for first GitHub account, create a new SSH key for different account
+```bash
+ssh-keygen -t rsa -b 4096 -C "enter-your-email-address-linked-with-Github-account-here"
+```
+### The output will look like this:
+```bash
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/kallen/.ssh/id_rsa):
+```
+### Instead of saving to id`_`rsa (default personal account) change file name.
+### For example, to change to name it in file id`_`rsa`_`kallen:
+```bash
+Enter file in which to save the key (/home/kallen/.ssh/id_rsa): /home/kallen/.ssh/id_rsa_kallen
+```
+### Afterwards you get the typical prompt to enter a passphrase.
+```bash
+Enter passphrase (empty for no passphrase)
+```
+### You will be prompted to enter the passphrase again.
+```bash
+Enter same passphrase again (empty for no passphrase):
+```
+### Now two files (public and private keys) have been created in the location you specified. Output public key with
+```bash
+cat .ssh/id_rsa_kallen.pub
+```
+### Manually copy the output and add the key in your desired GitHub account. Go to profile picture >> Settings >> SSH and GPG keys
+### Add key to SSH
+```bash
+$ ssh-add ~/.ssh/id_rsa_kallen
+Enter passphrase for /home/kallen/.ssh/id_rsa_kallen:
+Identity added: /home/kallen/.ssh/id_rsa_kallen (kallen@gmail.com)
+```
+### If successfully added, a line stating Identity Added will appear
+### To specify which account you want to push from, create a config file in .ssh folder
+```bash
+touch ~/.ssh/config
+vim config
+```
+### Paste the following:
+```bash
+# Default GitHub
+Host github.com
+   HostName github.com
+   User git
+   IdentityFile ~/.ssh/id_rsa
+```
+### This is the default for pushing to the primary GitHub account. Copy and modify this default snippet so you 
 
 ## Basic Git work flow
 
