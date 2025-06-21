@@ -30,10 +30,11 @@ cat ~/.ssh/id_ed25519.pub
 
 
 ## Getting started
-### Frist go to the github website of the repository that you want to contribute to and copy the SSH or HTTPS link, for e.g.
+### Copy the SSH or HTTPS link and do
 ```bash
 git clone https://github.com/FahYen/EngineeringNotes.git
 ```
+
 ### By default you're on main branch of the repository, you want to start a new branch for your work, do
 ```bash
 git checkout feature_branch
