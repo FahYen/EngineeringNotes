@@ -3,7 +3,8 @@
 ## Table of Contents
 
  - [Initial setup of Git on a new system](#initial-setup-of-git-on-a-new-system)
- - [Basic rebase workflow](#basic-rebase-workflow)
+ - [Getting started](#getting-started)
+ - [Basic Git work flow](#basic-git-work-flow)
 
 ## Initial setup of Git on a new system
 ### Configure user information
@@ -25,6 +26,23 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 ```bash
 cat ~/.ssh/id_ed25519.pub
 ```
+
+
+
+## Getting started
+### Frist go to the github website of the repository that you want to contribute to and copy the SSH or HTTPS link, for e.g.
+```bash
+git clone https://github.com/FahYen/EngineeringNotes.git
+```
+### By default you're on main branch of the repository, you want to start a new branch for your work, do
+```bash
+git checkout feature_branch
+```
+
+
+
+
+
 ## Basic Git work flow
 
 ![Basic rebase workflow](Illustrations/rebase.png "Basic rebase workflow")
@@ -61,8 +79,16 @@ git add /home/user/project/src/file.js
 git add src/*.py
 ```
 ## 'git commit'
+Create a "commit" or a snapshot of repository of everything that's staged.
+## 'git push'
+Apply local commits to the remote repository
 ```bash
-
+git push
+# Equivalent to
+git push orgin
+# You can also do
+git push upstream
+# if you have an upstream, if you were forking another repository
 ```
 ```bash
 git checkout main
