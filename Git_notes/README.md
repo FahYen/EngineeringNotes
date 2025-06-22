@@ -53,8 +53,8 @@ ssh-keygen -t rsa -b 4096 -C "enter-your-email-address-linked-with-Github-accoun
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/kallen/.ssh/id_rsa):
 ```
-### Instead of saving to id`_`rsa (default personal account) change file name.
-### For example, to change to name it in file id`_`rsa`_`kallen:
+### Instead of saving to id\_rsa (default personal account) change file name.
+### For example, to change to name it in file id\_rsa\_kallen:
 ```bash
 Enter file in which to save the key (/home/kallen/.ssh/id_rsa): /home/kallen/.ssh/id_rsa_kallen
 ```
@@ -91,7 +91,24 @@ Host github.com
    User git
    IdentityFile ~/.ssh/id_rsa
 ```
-### This is the default for pushing to the primary GitHub account. Copy and modify this default snippet so you 
+### This is the default for pushing to the primary GitHub account. Copy and modify this default snippet so you have changed the Host and IdentityFile
+### For example, Host is changed to github-kallen.com and IdentityFile is ~/.ssh/id\_rsa\_kallen:
+```bash
+Host github-kallen.com
+   HostName github.com
+   User git
+   IdentityFile ~/.ssh/id_rsa_kallen
+```
+### When you want to push from this account make sure git remote is set with this Host
+### For example, setting origin to FahYen/EngineeringNotes.git with previous config identity for kallen:
+```bash
+git remote add origin git@github-kallen.com:FahYen/EngineeringNotes.git
+```
+### If you have configured git to use a global email and user name, set the email for this repository so the correct acount shows
+```bash
+git config user.email "set-desired-GitHub-email-here"
+```
+### Now when you push to this repository, the correct account should display
 
 ## Basic Git work flow
 
