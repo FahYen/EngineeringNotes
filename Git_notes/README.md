@@ -6,6 +6,9 @@
  - [Getting started](#getting-started)
  - [Using multiple accounts on same computer](#using-multiple-accounts-on-same-computer)
  - [Basic Git work flow](#basic-git-work-flow)
+   - [Add changes to staging area](#add-changes-to-staging-area)
+   - [Committing staged changes to local repository](#committing-staged-changes-to-local-repository)
+   - [Pushing changes to remote repository](#pushing-changes-to-remote-repository)
 
 ## Initial setup of Git on a new system
 ### Configure user information
@@ -33,14 +36,19 @@ cat ~/.ssh/id_ed25519.pub
 ## Getting started
 ### Copy the SSH or HTTPS link and do
 ```bash
-git clone https://github.com/FahYen/EngineeringNotes.git
+git clone https://github.com/FahYen/repo.git
 ```
+ - A new folder called `repo` is made
+ - It is initialized as a Git repository
+ - A remote named `origin` is created, pointing to the URL you cloned from
+ - All of the repository's files and commits are downloaded there
+ - The default branch is checked out
 
 ### By default you're on main branch of the repository, you want to start a new branch for your work, do
 ```bash
-git checkout feature_branch
+git branch feature_branch   # To create new local branch
+git checkout feature_branch # To switch branch
 ```
-
 
 
 
@@ -94,17 +102,18 @@ Host github.com
 ```
 ### This is the default for pushing to the primary GitHub account. Copy and modify this default snippet so you 
 
-## Basic Git work flow
 
+
+## Basic Git Work Flow
 ![Basic rebase workflow](Illustrations/rebase.png "Basic rebase workflow")
-## 'git add'
+**Add changes to staging area**
 Git add specifies what changes are staged for the next commit.
 ### Add all changes in current working directory except files specified by .gitignore
 ```bash
 git add .
 ```
 ### .gitignore example
-.gitignore can be in any directory in the repository, each one applies to its directory and all subdirectories below it. The glob pattern assume the working directory to be the location of .gitignore.
+.gitignore can be in any directory in the repository, each one applies to its directory and all subdirectories below it. The glob pattern take the working directory as the location of .gitignore.
 ```bash
 # Ignore everything
 *
@@ -124,23 +133,54 @@ git add .
 git add src/
 # Equivalaent to
 git add ./src/
-# Add with absolute path
+# Add with absolute path, file location must be within repository
 git add /home/user/project/src/file.js
 # Add all python files in .src/
 git add src/*.py
 ```
-## 'git commit'
+
+
+
+## Committing Staged Changes to Local Repository
 Create a "commit" or a snapshot of repository of everything that's staged.
-## 'git push'
-Apply local commits to the remote repository
 ```bash
-git push
-# Equivalent to
-git push orgin
-# You can also do
-git push upstream
-# if you have an upstream, if you were forking another repository
+git commit -m "note-about-your-changes"
 ```
+
+
+
+## Pushing Changes to Remote Repository
+```bash
+git push REMOTE-NAME BRANCH-NAME
+```
+- By default, origin is the remote-name of the URL you cloned.
+### To add a remote repository to current branch
+```bash
+git remote add REMOTE-NAME REMOTE-REPO-URL
+```
+- A convention is to name the original repository `upstream` and your remote fork repository `origin`
+- `git remote` only manages remote repository connections, not branches within the remote repositories
+
+### To create a branch in the remote repository, pushes your local branch to it, AND tracks it with current local branch
+```bash
+git push --set-upstream REMOTE-NAME REMOTE-BRANCH-NAME # Can be different names
+```
+- Tracking means, `git push` and `git pull` will default to the tracking branch without need for specification.
+
+### Resolve non-fast-foward errors
+This happens when remote repository branch diverged
+```bash
+# To update local compressed information of a remote branch for merging
+git fetch origin/main
+# Three way merge
+git merge origin/main
+# Push merged local branch to remote branch
+git push
+```
+
+
+
+## Understanding Fast-Forward Merge and Three-Way Merge
 ```bash
 git checkout main
 git pull
