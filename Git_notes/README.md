@@ -62,8 +62,8 @@ ssh-keygen -t rsa -b 4096 -C "enter-your-email-address-linked-with-Github-accoun
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/kallen/.ssh/id_rsa):
 ```
-### Instead of saving to id`_`rsa (default personal account) change file name.
-### For example, to change to name it in file id`_`rsa`_`kallen:
+### Instead of saving to `id_rsa` (default personal account) change file name.
+### For example, to change to name it in file `id_rsa_kallen`:
 ```bash
 Enter file in which to save the key (/home/kallen/.ssh/id_rsa): /home/kallen/.ssh/id_rsa_kallen
 ```
@@ -106,13 +106,13 @@ Host github.com
 
 ## Basic Git Work Flow
 ![Basic rebase workflow](Illustrations/rebase.png "Basic rebase workflow")
-**Add changes to staging area**
+### Add changes to staging area
 Git add specifies what changes are staged for the next commit.
-### Add all changes in current working directory except files specified by .gitignore
+#### Add all changes in current working directory except files specified by .gitignore
 ```bash
 git add .
 ```
-### .gitignore example
+#### .gitignore example
 .gitignore can be in any directory in the repository, each one applies to its directory and all subdirectories below it. The glob pattern take the working directory as the location of .gitignore.
 ```bash
 # Ignore everything
@@ -127,7 +127,7 @@ git add .
 # And everything in ./src/ recursively
 !src/**
 ```
-### git add specifics
+#### git add specifics
 ```bash
 # Add src directory in current working directory
 git add src/
@@ -141,7 +141,7 @@ git add src/*.py
 
 
 
-## Committing Staged Changes to Local Repository
+### Committing Staged Changes to Local Repository
 Create a "commit" or a snapshot of repository of everything that's staged.
 ```bash
 git commit -m "note-about-your-changes"
@@ -149,25 +149,25 @@ git commit -m "note-about-your-changes"
 
 
 
-## Pushing Changes to Remote Repository
+### Pushing Changes to Remote Repository
 ```bash
 git push REMOTE-NAME BRANCH-NAME
 ```
 - By default, origin is the remote-name of the URL you cloned.
-### To add a remote repository to current branch
+#### To add a remote repository to current branch
 ```bash
 git remote add REMOTE-NAME REMOTE-REPO-URL
 ```
 - A convention is to name the original repository `upstream` and your remote fork repository `origin`
 - `git remote` only manages remote repository connections, not branches within the remote repositories
 
-### To create a branch in the remote repository, pushes your local branch to it, AND tracks it with current local branch
+#### To create a branch in the remote repository, pushes your local branch to it, AND tracks it with current local branch
 ```bash
 git push --set-upstream REMOTE-NAME REMOTE-BRANCH-NAME # Can be different names
 ```
 - Tracking means, `git push` and `git pull` will default to the tracking branch without need for specification.
 
-### Resolve non-fast-foward errors
+#### Resolve non-fast-foward errors
 This happens when remote repository branch diverged
 ```bash
 # To update local compressed information of a remote branch for merging
