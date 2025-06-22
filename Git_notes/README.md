@@ -8,8 +8,9 @@
  - [Basic Git work flow](#basic-git-work-flow)
    - [Add changes to staging area](#add-changes-to-staging-area)
    - [Committing staged changes to local repository](#committing-staged-changes-to-local-repository)
-   - [Pushing changes to remote repository](#pushing-changes-to-remote-repository)
-
+   - [Synchronizing local and remote repository](#synchronizing-local-and-remote-repository)
+ - [Fast-forward merge](#fast-forward-merge)
+ - [Three-way merge](#three-way-merge)
 ## Initial setup of Git on a new system
 ### Configure user information
 
@@ -149,7 +150,7 @@ git commit -m "note-about-your-changes"
 
 
 
-### Pushing Changes to Remote Repository
+### Synchronizing Local and Remote Repository
 ```bash
 git push REMOTE-NAME BRANCH-NAME
 ```
@@ -180,13 +181,80 @@ git push
 
 
 
-## Understanding Fast-Forward Merge and Three-Way Merge
+## Fast-Forward Merge
+### Fast-Forward Merge without divergence, say you have
+
+
+	      A---B---C feature_branch
+	     /
+    D---E main
+
+### Then you can just run
 ```bash
 git checkout main
-git pull
+git merge feature_branch
+```
+### Then the graph becomes
+
+          A---B---C feature_branch & main
+	     /        
+    D---E
+### Fast-Forward Merge with divergence, say you have
+
+          A---B---C feature_branch
+	     /
+    D---E---F---G main
+
+### To achieve Fast-Forware Merge, singular path of commit history
+```bash
 git checkout feature_branch
 git rebase main
+```
+### `git rebase` reapplies the commtis on top of another base tip, G
+                  A---B---C feature_branch
+	             /
+    D---E---F---G main
+### Then you can apply [Fast-Forware Merge without divergence](#fast-forward-merge-with-divergence-say-you-have) as usual
+
+
+
+## Three-Way Merge
+### Say you have following history
+
+	       A---B---C feature_branch
+	     /
+    D---E---F---G main
+### Three-Way Merge takes two branch tips, C and G, and a common base commit, E, and create a new merge commit that combines all three commits.
+```bash
 git checkout main
 git merge feature_branch
-git push
 ```
+	      A---B---C feature_branch
+	     /         \
+    D---E---F---G---H main
+## When to Choose Fast-Forward Merge vs Three-Way Merge
+
+### Fast-Forward Merge
+- When the feature branch is directly ahead of the main branch with no divergent commits.
+- When you prefer a clean, linear commit history without merge commits.
+- Ideal for small, short-lived branches or single-topic changes.
+
+**Benefits:**
+- Simpler history and easier to follow a single line of development.
+
+**Drawbacks:**
+- Loses explicit record of the branch integration point.
+- Harder to trace feature context if many changes are merged this way.
+
+### Three-Way Merge
+- When branches have diverged and both contain unique commits.
+- When you want to preserve the context and history of a feature branch.
+- Ideal for long-lived or collaborative branches and complex integrations.
+
+**Benefits:**
+- Clearly records the merge commit and context of when and how branches were integrated.
+- Easier to revert or isolate feature work grouped under a merge commit.
+
+**Drawbacks:**
+- Introduces extra merge commits, making the commit graph non-linear.
+- Can clutter history with many merge commits if overused.
