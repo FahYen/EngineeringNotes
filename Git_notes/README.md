@@ -108,7 +108,7 @@ git remote add origin git@github-kallen.com:FahYen/EngineeringNotes.git
 ```bash
 git config user.email "set-desired-GitHub-email-here"
 ```
-### Now when you push to this repository, the correct account should display
+### Now when you push to this repository, the correct account will display
 
 ## Basic Git work flow
 
