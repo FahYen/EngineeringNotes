@@ -1,4 +1,4 @@
-# Git Cheat Sheet
+<h1 align="center">Git Cheat Sheet</h1>
 
 ## Table of Contents
 
@@ -11,6 +11,9 @@
    - [Synchronizing local and remote repository](#synchronizing-local-and-remote-repository)
  - [Fast-forward merge](#fast-forward-merge)
  - [Three-way merge](#three-way-merge)
+
+---
+
 ## Initial setup of Git on a new system
 ### Configure user information
 
@@ -32,7 +35,7 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 cat ~/.ssh/id_ed25519.pub
 ```
 
-
+---
 
 ## Getting started
 ### Copy the SSH or HTTPS link and do
@@ -51,7 +54,7 @@ git branch feature_branch   # To create new local branch
 git checkout feature_branch # To switch branch
 ```
 
-
+---
 
 ## Using multiple accounts on same computer
 ### Assuming you already set up SSH key for first GitHub account, create a new SSH key for different account
@@ -120,7 +123,7 @@ git config user.email "set-desired-GitHub-email-here"
 ```
 ### Now when you push to this repository, the correct account will display
 
-
+---
 
 ## Basic Git Work Flow
 ![Basic rebase workflow](Illustrations/rebase.png "Basic rebase workflow")
@@ -196,7 +199,7 @@ git merge origin/main
 git push
 ```
 
-
+---
 
 ## Fast-Forward Merge
 ### Fast-Forward Merge without divergence, say you have
@@ -233,7 +236,7 @@ git rebase main
     D---E---F---G main
 ### Then you can apply [Fast-Forware Merge without divergence](#fast-forward-merge-with-divergence-say-you-have) as usual
 
-
+---
 
 ## Three-Way Merge
 ### Say you have following history
@@ -249,6 +252,9 @@ git merge feature_branch
 	      A---B---C feature_branch
 	     /         \
     D---E---F---G---H main
+
+--- 
+
 ## When to Choose Fast-Forward Merge vs Three-Way Merge
 
 ### Fast-Forward Merge
