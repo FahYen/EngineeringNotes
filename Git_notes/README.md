@@ -181,6 +181,10 @@ git remote add REMOTE-NAME REMOTE-REPO-URL
 ```
 - A convention is to name the original repository `upstream` and your remote fork repository `origin`
 - `git remote` only manages remote repository connections, not branches within the remote repositories
+#### Reset remote url, you may have to do that if you accidentally cloned with https but you need ssh to push
+```bash
+git remote set-url REMOTE-NAME REMOTE-REPO-URL
+```
 
 #### To create a branch in the remote repository, pushes your local branch to it, AND tracks it with current local branch
 ```bash
