@@ -161,13 +161,27 @@ git add src/*.py
 ```
 
 
-
 ### Committing Staged Changes to Local Repository
 Create a "commit" or a snapshot of repository of everything that's staged.
 ```bash
 git commit -m "note-about-your-changes"
 ```
 
+### Branching
+Branching is useful for when you want to work on different version of the project.
+To create and switch to a new branch based on the current branch
+```bash
+git branch BRANCH-NAME
+git checkout BRANCH-NAME
+```
+To list all the branches you have
+```bash
+git branch -a
+```
+To list the remote url that your current branch is tracking
+```bash
+git remote -v # V for verbose
+```
 
 
 ### Synchronizing Local and Remote Repository
