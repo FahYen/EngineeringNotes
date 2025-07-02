@@ -53,6 +53,8 @@ git clone https://github.com/FahYen/repo.git
 git branch feature_branch   # To create new local branch
 git checkout feature_branch # To switch branch
 ```
+### If you have cloned an empty repository and there is no commit history, when you do `git branch -a`, it won't show anything.
+
 
 ---
 
